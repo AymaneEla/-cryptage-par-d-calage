@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void encrypt(char message[], int shift) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (message[i] >= 'A' && message[i] <= 'Z') {
+            message[i] = (message[i] + shift - 'A') % 26 + 'A';
+        } else if (message[i] >= 'a' && message[i] <= 'z') {
+            message[i] = (message[i] + shift - 'a') % 26 + 'a';
+        }
+    }
+}
+
+int main() {
+    char message[100];
+    int shift;
+
+    printf("Entrez le message � crypter : ");
+    fgets(message, sizeof(message), stdin);
+
+    printf("Entrez le d�calage pour le cryptage : ");
+    scanf("%d", &shift);
+
+    encrypt(message, shift);
+
+    printf("Message crypt� : %s\n", message);
+
+    return 0;
+}
